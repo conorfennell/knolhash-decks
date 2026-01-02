@@ -1,0 +1,50 @@
+Q: What is the "zero value" of a slice declared as `var s []int`?
+A: `nil`
+C: Go/Slices/Initialization
+
+Q: Between `var s []int` and `s := make([]int, 0)`, which results in a non-nil slice?
+A: `s := make([]int, 0)`
+C: Go/Slices/Initialization
+
+Q: How does a `nil` slice (from `var s []int`) appear when encoded to JSON?
+A: `null`
+C: Go/Slices/JSON
+
+Q: How does an empty, initialized slice (from `make([]int, 0)`) appear when encoded to JSON?
+A: `[]`
+C: Go/Slices/JSON
+
+Q: What are the three fields contained in a Go slice header?
+A: 
+1. Pointer (to underlying array)
+2. Length (`len`)
+3. Capacity (`cap`)
+C: Go/Slices/Internals
+
+Q: In the `append` function, what happens if `len + 1 <= cap`?
+A: Go writes the value into the existing array and increments the length.
+C: Go/Slices/Append
+
+Q: Why must you assign the result of `append` back to the slice (e.g., `s = append(s, x)`)?
+A: Because `append` may allocate a **new underlying array** and return a header with a new pointer.
+C: Go/Slices/Append
+
+Q: How does Go typically grow the capacity of a small slice (under 256 elements) when it runs out of space?
+A: It **doubles** the capacity.
+C: Go/Slices/Append
+
+Q: What is the most efficient way to initialize a slice if you know it will eventually hold `N` elements?
+A: Use `make` with a pre-defined capacity: `make([]int, 0, N)`
+C: Go/Slices/Performance
+
+Q: Why is direct index assignment (`arr[i] = x`) faster than `append`?
+A: It avoids the overhead of checking capacity and the logic required for potential reallocation.
+C: Go/Slices/Performance
+
+Q: Given the XOR property $a \oplus b = c$, what is the formula to find $b$?
+A: $b = a \oplus c$
+C: Math/Logic/XOR
+
+Q: In the "Decode XORed Array" problem, how do you find `arr[i+1]` if you have `arr[i]` and `encoded[i]`?
+A: `arr[i+1] = arr[i] ^ encoded[i]`
+C: Programming/Algorithms/XOR
