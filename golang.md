@@ -40,11 +40,3 @@ C: Go/Slices/Performance
 Q: Why is direct index assignment (`arr[i] = x`) faster than `append`?
 A: It avoids the overhead of checking capacity and the logic required for potential reallocation.
 C: Go/Slices/Performance
-
-Q: Given the XOR property $a \oplus b = c$, what is the formula to find $b$?
-A: $b = a \oplus c$
-C: Math/Logic/XOR
-
-Q: In the "Decode XORed Array" problem, how do you find `arr[i+1]` if you have `arr[i]` and `encoded[i]`?
-A: `arr[i+1] = arr[i] ^ encoded[i]`
-C: Programming/Algorithms/XOR
