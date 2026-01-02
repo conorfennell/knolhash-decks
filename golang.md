@@ -40,3 +40,7 @@ C: Go/Slices/Performance
 Q: Why is direct index assignment (`arr[i] = x`) faster than `append`?
 A: It avoids the overhead of checking capacity and the logic required for potential reallocation.
 C: Go/Slices/Performance
+
+Q: What does it mean that interfaces in Go are satisfied "implicitly"?
+A: A type does not need to explicitly declare that it implements an interface (e.g., no implements keyword); it satisfies the interface simply by implementing all required methods.
+C: Go/Interfaces
