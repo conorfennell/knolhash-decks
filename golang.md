@@ -44,3 +44,14 @@ C: Go/Slices/Performance
 Q: What does it mean that interfaces in Go are satisfied "implicitly"?
 A: A type does not need to explicitly declare that it implements an interface (e.g., no implements keyword); it satisfies the interface simply by implementing all required methods.
 C: Go/Interfaces
+
+Q: How do you lowecase strings in Go?
+A: 
+```go
+import (
+    "strings"
+)
+func toLowerCase(s string) string {
+    return strings.ToLower(s)
+}
+```
