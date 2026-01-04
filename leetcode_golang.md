@@ -1,6 +1,3 @@
-To ensure you can copy this directly into a single file without any Markdown formatting interference, here is the raw text for the remaining cards.
-
-
 Q: What is the Go template for a two-pointer approach with one input from opposite ends?
 A: 
 ```go
