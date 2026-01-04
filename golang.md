@@ -55,3 +55,14 @@ func toLowerCase(s string) string {
     return strings.ToLower(s)
 }
 ```
+
+Q: How do you uppercase strings in Go?
+A: 
+```go
+import (
+    "strings"
+)
+func toLowerCase(s string) string {
+    return strings.ToUpper(s)
+}
+```
