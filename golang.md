@@ -55,3 +55,29 @@ func toLowerCase(s string) string {
     return strings.ToLower(s)
 }
 ```
+
+Q: How do you convert an integer to a string in Go?
+A: 
+```go
+import (
+    "strconv"
+)
+
+func intToString(i int) string {
+    return strconv.Itoa(i)
+}
+```
+C: Go/Strings/Conversion
+
+Q: How do you convert a string to an integer in Go?
+A: 
+```go
+import (
+    "strconv"
+)
+
+func stringToInt(s string) (int, error) {
+    return strconv.Atoi(s)
+}
+```
+C: Go/Strings/Conversion
