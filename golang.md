@@ -81,3 +81,20 @@ func stringToInt(s string) (int, error) {
 }
 ```
 C: Go/Strings/Conversion
+
+Q: How do you efficiently build a string in Go?
+A: Use `strings.Builder`. It minimizes memory allocations.
+```go
+import (
+    "strings"
+)
+
+func buildString(parts []string) string {
+    var sb strings.Builder
+    for _, part := range parts {
+        sb.WriteString(part)
+    }
+    return sb.String()
+}
+```
+C: Go/Strings/Builder
