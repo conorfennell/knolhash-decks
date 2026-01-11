@@ -98,3 +98,38 @@ func buildString(parts []string) string {
 }
 ```
 C: Go/Strings/Builder
+
+Q: How do you prevent variable shadowing when initializing variables inside conditional blocks?**
+
+A:** Shadowing occurs when using `:=` inside a block, which creates a **new local variable** instead of updating the outer one. To avoid this, declare the variable in the outer scope first and use the **assignment operator** (`=`) inside the block. This also allows for mutualized error handling after the block.
+
+### **The Mistake (Shadowing)**
+```go
+var client *http.Client
+if tracing {
+    // BUG: := creates a new 'client' local to this if-block
+    client, err := createClientWithTracing() 
+    if err != nil { return err }
+}
+// client is still nil here!
+
+```
+
+### **The Fix (Assignment)**
+
+```go
+var client *http.Client
+var err error // 1. Pre-declare
+
+if tracing {
+    client, err = createClientWithTracing() // 2. Use '='
+} else {
+    client, err = createDefaultClient()
+}
+
+if err != nil { // 3. Common error handling
+    return err
+}
+// client is correctly initialized here
+
+```
