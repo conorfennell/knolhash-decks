@@ -133,3 +133,29 @@ if err != nil { // 3. Common error handling
 // client is correctly initialized here
 
 ```
+
+Q: What is the `init()` function in Go and how does it behave?
+
+A: The `init()` function is a special function used for package initialization. It executes **automatically** before `main()`, takes **no parameters**, and returns **no values**. It is designed to ensure a package is in a "ready" state before any other functions are called, solving the problem of manual setup boilerplate.
+
+### **Core Execution Rules**
+* **Automatic:** You never call `init()` manually; the Go runtime handles it.
+* **Order:** Package-level variables/constants are initialized first, then `init()` functions run.
+* **Imports:** All `init()` functions in **imported packages** run before those in the `main` package.
+* **Multiplicity:** A single package (or even a single file) can have multiple `init()` functions, which execute in the order they appear.
+
+### **Common Use Case: Driver Registration**
+The most famous use of `init()` is the **side-effect import**, where a package registers itself with a central library (like a database driver) without the user needing to call a setup function.
+
+```go
+// In the driver package
+package driver
+
+func init() {
+    // Registers with the 'sql' package automatically on import
+    sql.Register("my-driver", &MyDriver{})
+}
+
+// In your main package
+import _ "path/to/driver" // The '_' triggers init() without using the package
+```
