@@ -173,3 +173,29 @@ func main() {
     os.Exit(3)
 }
 ```
+Q: How do handle Unix signals with channels?
+A:
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
+)
+
+func main() {
+	signals := make(chan os.Signal, 1)
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+	done := make(chan bool, 1)
+	go func() {
+		sig := <-signals
+		fmt.Println()
+		fmt.Println(sig)
+		done <- true
+	}()
+	<-done
+	fmt.Println("exiting")
+}
+```
