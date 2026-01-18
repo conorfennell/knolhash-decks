@@ -159,3 +159,17 @@ func init() {
 // In your main package
 import _ "path/to/driver" // The '_' triggers init() without using the package
 ```
+
+Q: How do you exit a process in Go and what happens defer?
+A:
+```go
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    defer fmt.Println("!")
+    os.Exit(3)
+}
+```
