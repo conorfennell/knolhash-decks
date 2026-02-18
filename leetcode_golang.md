@@ -428,3 +428,43 @@ func dijkstra(n int, graph map[int][][]int, source int) []int {
     return dist
 }
 ```
+Q: What is the Go template for calculating the area of a polygon using the Shoelace Formula?
+A:
+
+The Shoelace Formula (or Surveyor's Formula) is the most efficient way to find the area of a non-self-intersecting polygon given the coordinates of its vertices. It avoids expensive square roots and trigonometry by using cross-multiplication.
+
+Go
+```
+func getPolygonArea(points [][]int) float64 {
+    area := 0.0
+    n := len(points)
+    for i := 0; i < n; i++ {
+        j := (i + 1) % n // The next vertex, wrapping around to the first
+        // (x1*y2 - x2*y1)
+        area += float64(points[i][0] * points[j][1])
+        area -= float64(points[j][0] * points[i][1])
+    }
+    return math.Abs(area) / 2.0
+}
+```
+
+Q: How do you use the Cross Product to determine the orientation of three points or the area of a triangle in Go?
+
+A:The Cross Product of two vectors AB and BC tells you the "signed area" of the parallelogram they span. In 2D coordinate geometry, this is the foundation for checking if three points turn left, turn right, or are collinear.
+
+Go
+```
+// Returns a positive value for Counter-Clockwise, 
+// negative for Clockwise, and 0 for Collinear.
+func crossProduct(a, b, c []int) int {
+    // Vector AB = (b[0]-a[0], b[1]-a[1])
+    // Vector BC = (c[0]-b[0], c[1]-b[1])
+    // Cross Product = (x1*y2 - y1*x2)
+    return (b[0]-a[0])*(c[1]-a[1]) - (b[1]-a[1])*(c[0]-a[0])
+}
+
+func triangleArea(a, b, c []int) float64 {
+    // Area is half the absolute value of the cross product
+    return math.Abs(float64(crossProduct(a, b, c))) * 0.5
+}
+```
