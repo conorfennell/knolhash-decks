@@ -468,3 +468,17 @@ func triangleArea(a, b, c []int) float64 {
     return math.Abs(float64(crossProduct(a, b, c))) * 0.5
 }
 ```
+
+Q: How do you implement the Optimized GCD (Euclidean Algorithm) in Go?
+
+A:
+
+```go
+// Optimized GCD (Euclidean Algorithm)
+func gcd(a, b int) int {
+    for b != 0 {
+        a, b = b, a%b
+    }
+    return a
+}
+```
